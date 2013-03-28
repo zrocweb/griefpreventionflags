@@ -13,6 +13,7 @@ public class GriefPreventionFlags extends JavaPlugin{
 	
 	public void onEnable(){
 		PluginManager pm = getServer().getPluginManager();
+		forcePlugin(pm, "GriefPrevention");
 		claimmanager = new ClaimManager();
 		flaglistener = new FlagListener();
 		instance = this;
@@ -25,6 +26,14 @@ public class GriefPreventionFlags extends JavaPlugin{
 		getLogger().info("GriefPreventionFlags Has Been Disabled.");
 	}
     
+	public void forcePlugin(PluginManager pm, String plugin){
+		getLogger().info("Checking for plugin %plugin".replaceAll("%plugin", plugin));
+		if(!pm.isPluginEnabled(plugin)){
+			getLogger().info("Plugin %plugin not enabled! Shutting down GriefPreventionFlags");
+			pm.disablePlugin(this);
+		}
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		
 		if(cmd.getName().equalsIgnoreCase("setflag")){
