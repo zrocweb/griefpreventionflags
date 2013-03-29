@@ -35,4 +35,13 @@ public class FlagListener implements Listener{
 		}
 	}
 	
+	@EventHandler
+	public void playerDamageEvent(EntityDamageEvent e){
+		if(JCore.getClaimAtLocation(e.getEntity().getLocation()) != null && e.getEntity() instanceof Player){
+			if(!GriefPreventionFlags.instance.claimmanager.flags[ClaimManager.Damage].isAllowedInClaim(JCore.getClaimAtLocation(e.getEntity().getLocation()))){
+				e.setCancelled(true);
+			}
+		}
+	}
+	
 }

@@ -5,12 +5,14 @@ public class ClaimManager {
 	public static final int MobSpawning = 0;
 	public static final int pvp =         1;
 	public static final int LeafDecay =   2;
+	public static final int Damage = 3;
     
 	public void init(){
-		flags = new Flag[3];
+		flags = new Flag[4];
 		flags[MobSpawning] = new Flag("Mob-Spawning");
 		flags[pvp] = new Flag("PVP");
 		flags[LeafDecay] = new Flag("Leaf-Decay");
+		flags[Damage] = new Flag("Damage");
 	}
 	
 	public void addFlag(Flag flag){
