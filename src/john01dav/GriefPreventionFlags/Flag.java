@@ -11,6 +11,45 @@ public class Flag {
     	this.name = name;
     }
     
+    public Boolean isDataSet(Claim claim){
+    	String dataLocation = "./plugins/GriefPreventionFlags/data/" + claim.getID() + "/" + name;
+    	
+    	return JCore.fileExists(dataLocation);
+    	
+    }
+    
+    public Boolean isAllowedGlobally(){
+    	String dataLocation = "./plugins/GriefPreventionFlags/data/global/" + name;
+    	
+    	if(!JCore.fileExists(dataLocation)){
+    		return true;
+    	}
+    	
+    	if(JCore.getFileContents(dataLocation).toLowerCase().contains("true")){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
+    public void setAllowedGlobally(Boolean value){
+    	String dataLocation = "./plugins/GriefPreventionFlags/data/global/" + name;
+    	
+    	File data = new File(dataLocation);
+    	if(data.exists() == false){
+    		try {
+				data.getParentFile().mkdirs();
+    			data.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	JCore.setFileContents(dataLocation, value + "");
+    	
+    }
+    
     public Boolean isAllowedInClaim(Claim claim){
     	if(claim == null){
     		return true;
