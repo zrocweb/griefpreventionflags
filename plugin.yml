@@ -1,5 +1,5 @@
 name: GriefPreventionFlags
-version: 1.0.1
+version: 1.2
 main: src.john01dav.GriefPreventionFlags.GriefPreventionFlags
 depend: [GriefPrevention]
 
@@ -8,3 +8,7 @@ commands:
     description: Allows you to set a flag for a claim!
     permission: griefpreventionflags.setflag
     usage: /setflag <flag> <value>
+  setFlagGlobal:
+    description: Allows you to set a flag globally
+    permission: griefpreventionflags.setflag.global
+    usage: /setflagglobal <flag> <value>
